@@ -10,7 +10,7 @@ window.onload = function () {
 	const titleImgUrl = "title.png";						//game.htmlからの相対パス
 	game.preload([titleImgUrl]);					//データを読み込んでおく
 
-	//ボタン画像
+	//スタートボタン画像
 	const startImgUrl = "start.png";						//game.htmlからの相対パス
 	game.preload([startImgUrl]);					//データを読み込んでおく
 
@@ -30,11 +30,11 @@ window.onload = function () {
 	const buttonImgUrl = "button.png";						//game.htmlからの相対パス
 	game.preload([buttonImgUrl]);					//データを読み込んでおく
 
-	//ボタン画像
+	//GAMEOVER画像
 	const gameoverImgUrl = "gameover.png";						//game.htmlからの相対パス
 	game.preload([gameoverImgUrl]);					//データを読み込んでおく
 
-	//ボタン画像
+	//CLEAR画像
 	const clearImgUrl = "clear.png";						//game.htmlからの相対パス
 	game.preload([clearImgUrl]);					//データを読み込んでおく
 
@@ -127,9 +127,6 @@ window.onload = function () {
 				game.assets[clickSndUrl].clone().play();		//クリックの音を鳴らす。
 			}
 
-			//クリックしたのでぞう山画像のｘ位置を戻す
-			//this.x = -200;							//this.xって何？と思った方、purinの関数内でぞう山の座標を動かすときにはthisを使います。
-			//purinImg.x = -200;							//this.xって何？と思った方、purinの関数内でぞう山の座標を動かすときにはthisを使います。
 
 			//ポイントによって状態Stateを変更する
 			if (point < 1) {
@@ -145,7 +142,7 @@ window.onload = function () {
 
 
 		///////////////////////////////////////////////////
-		//メインループ　ここに主要な処理をまとめて書こう
+		//メインループ
 		game.onenterframe = function () {
 			if (state == 0) { 							//state=0のとき、初期セット状態(Pointの状態を０にして)
 				purinImg.x = 170;						//プリンのx座標を指定
@@ -171,15 +168,11 @@ window.onload = function () {
 				purinImg.y += -10;				
 			}
 
-			//現在のテキスト表示
-			//scoreText.text = "現在：" + (purinImg.x); 				//プリンの位置を表示する
-
 			//ゲームオーバー判定
 			if (purinImg.y <= -100) {						//画面上端にプリンが到達してしまったら
 				game.popScene();					　　　　//mainSceneシーンを外す
 				game.pushScene(endScene);				　　//endSceneシーンを読み込ませる
-				//ゲームオーバー後のテキスト表示
-				//gameOverText.text = "_";				//テキストに文字表示 
+
 			}
 
 			//クリア判定
@@ -188,7 +181,7 @@ window.onload = function () {
 				game.popScene();					//mainSceneシーンを外す
 				game.pushScene(endScene2);				//endSceneシーンを読み込ませる
 				//ゲームオーバー後のテキスト表示
-				ClearText.text = "あなたの記録：" + (Math.round(500*size)/100) + "cm";				//テキストに文字表示 
+				ClearText.text = "あなたの記録：" + (Math.round(100*size)) + "点";				//テキストに文字表示 
 			}
 
 		};
@@ -204,15 +197,6 @@ window.onload = function () {
 		gameoverImg.image = game.assets[gameoverImgUrl];	//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
 		endScene.addChild(gameoverImg);						//endSceneにこの画像を貼り付ける
 
-		//GAMEOVER
-		//const gameOverText = new Label(); 				//テキストはLabelクラス
-		//gameOverText.font = "20px Meiryo";				//フォントはメイリオ 20px
-		//gameOverText.color = 'rgba(255,255,255,1)';		//色　RGB+透明度　今回は白
-		//gameOverText.width = 400;							//横幅指定　今回画面サイズ400pxなので、width:400pxだと折り返して二行目表示してくれる
-		//gameOverText.moveTo(0, 30);						//移動位置指定
-		//endScene.addChild(gameOverText);					//endSceneシーンにこの画像を埋め込む
-
-
 		//CLEAR画面
 		const endScene2 = new Scene();
 		endScene2.backgroundColor = "green";
@@ -220,7 +204,6 @@ window.onload = function () {
 		clearImg.moveTo(0, 0);							//位置
 		clearImg.image = game.assets[clearImgUrl];		//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
 		endScene2.addChild(clearImg);					//endScene2にこの画像を貼り付ける
-
 
 		//CLEAR
 		const ClearText = new Label(); 					//テキストはLabelクラス
@@ -230,39 +213,37 @@ window.onload = function () {
 		ClearText.moveTo(100, 410);						//移動位置指定
 		endScene2.addChild(ClearText);					//endScene2シーンにこの画像を埋め込む
 
-
-
 		//リトライボタン
-		const retryBtn = new Sprite(140, 40);				//画像サイズをここに書く。使う予定の画像サイズはプロパティで見ておくこと
+		const retryBtn = new Sprite(140, 40);			//画像サイズ
 		retryBtn.moveTo(130, 440);						//リトライボタンの位置
-		retryBtn.image = game.assets[retryImgUrl];			//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
+		retryBtn.image = game.assets[retryImgUrl];		//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
 		endScene.addChild(retryBtn);					//endSceneにこのリトライボタン画像を貼り付ける  
 
 		//リトライボタン2
-		const retryBtn2 = new Sprite(140, 40);				//画像サイズをここに書く。使う予定の画像サイズはプロパティで見ておくこと
+		const retryBtn2 = new Sprite(140, 40);			//画像サイズ
 		retryBtn2.moveTo(40, 440);						//リトライボタンの位置
-		retryBtn2.image = game.assets[retryImgUrl];			//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
+		retryBtn2.image = game.assets[retryImgUrl];		//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
 		endScene2.addChild(retryBtn2);					//endSceneにこのリトライボタン画像を貼り付ける  
 		
 
 		retryBtn.ontouchend = function () {				//S_Retryボタンをタッチした（タッチして離した）時にこの中の内容を実行する
 			state = 0;
-			game.popScene();						//endSceneシーンを外す
+			game.popScene();							//endSceneシーンを外す
 			game.pushScene(mainScene);					//mainSceneシーンを入れる
 		};
 
-		retryBtn2.ontouchend = function () {				//S_Retryボタンをタッチした（タッチして離した）時にこの中の内容を実行する
+		retryBtn2.ontouchend = function () {			//S_Retryボタンをタッチした（タッチして離した）時にこの中の内容を実行する
 			state = 0;
-			game.popScene();						//endSceneシーンを外す
+			game.popScene();							//endSceneシーンを外す
 			game.pushScene(mainScene);					//mainSceneシーンを入れる
 		};
 
 
 		//ツイートボタン
-		const tweetBtn = new Sprite(140, 40);				//画像サイズをここに書く。使う予定の画像サイズはプロパティで見ておくこと
-		tweetBtn.moveTo(230, 440);						//リトライボタンの位置
+		const tweetBtn = new Sprite(140, 40);				//画像サイズ
+		tweetBtn.moveTo(230, 440);						//ツイートボタンの位置
 		tweetBtn.image = game.assets[tweetImgUrl];			//読み込む画像の相対パスを指定。　事前にgame.preloadしてないと呼び出せない
-		endScene2.addChild(tweetBtn);					//endSceneにこのリトライボタン画像を貼り付ける  
+		endScene2.addChild(tweetBtn);					//endScene2にこのツイートボタン画像を貼り付ける  
 		
 
 		tweetBtn.ontouchend = function () {				//S_Tweetボタンをタッチした（タッチして離した）時にこの中の内容を実行する
@@ -270,8 +251,8 @@ window.onload = function () {
 			//結果ツイート時にURLを貼るため、このゲームのURLをここに記入してURLがツイート画面に反映されるようにエンコードする
 			const url = encodeURI("https://shishidonagi.github.io/");
 			window.open("http://twitter.com/intent/tweet?text=私が舞ちゃんに食べさせたプリンの大きさは"
-			 + (Math.round(500*size)/100) + "&hashtags=舞ちゃんにプリンを食べさせるゲーム&url="
-			 + "cm&hashtags=僅か38kcalのポタージュ&url=" + url); //ハッシュタグにahogeタグ付くようにした。
+			 + (Math.round(100*size)) + "点" + "&hashtags=舞ちゃんにプリンを食べさせるゲーム&url="
+			 + "&hashtags=僅か38kcalのポタージュ&url=" + url); //ハッシュタグ
 		};
 
 	};
