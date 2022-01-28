@@ -157,8 +157,8 @@ window.onload = function () {
 				theta += 1.6*Math.PI;
 				size = 1 + Math.sin(theta / 60.8) * 0.5;　　　　　　　　　　　　　　　　//プリンのサイズをつかさどる関数
 				purinImg.tl.scaleTo(size,size,0);　　　　　　　　　　　　　　　　　　　//プリンのサイズを変更
-				purinImg.x = 170 - Math.sin(theta / 90) * 0.5;						//プリンのｘ座標を指定
-				purinImg.y = 370 - Math.sin(theta / 90) * 0.5;						//プリンのy座標を指定				
+				//purinImg.x = 170 - Math.sin(theta / 90) * 0.5;						//プリンのｘ座標を指定
+				//purinImg.y = 370 - Math.sin(theta / 90) * 0.5;						//プリンのy座標を指定				
 			}
 			if (state == 2) {							//プリンが左右に移動
 				theta2 += 1.6*Math.PI;
