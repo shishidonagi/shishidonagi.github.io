@@ -176,7 +176,7 @@ window.onload = function () {
 			}
 
 			//クリア判定
-			if (140 + 30*size <= purinImg.x && purinImg.x <= 208 - 30*size &&  purinImg.y <= 184) {		//プリンが舞の口の高さに到達
+			if (140 + 30*size <= purinImg.x && purinImg.x <= 204 - 30*size &&  purinImg.y <= 184) {		//プリンが舞の口の高さに到達
 				purinImg.y = 100
 				game.popScene();					//mainSceneシーンを外す
 				game.pushScene(endScene2);				//endSceneシーンを読み込ませる
