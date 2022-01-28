@@ -154,15 +154,15 @@ window.onload = function () {
 				state = 1;							//ゲームスタート状態に移行
 			}
 			if (state == 1) {							//ゲームスタート　プリンの大きさが変わる
-				theta += 5;
-				size = 1 + Math.sin(theta / 60) * 0.5;　　　　　　　　　　　　　　　　//プリンのサイズをつかさどる関数
+				theta += 1.6*Math.PI;
+				size = 1 + Math.sin(theta / 60.8) * 0.5;　　　　　　　　　　　　　　　　//プリンのサイズをつかさどる関数
 				purinImg.tl.scaleTo(size,size,0);　　　　　　　　　　　　　　　　　　　//プリンのサイズを変更
 				purinImg.x = 170 - Math.sin(theta / 90) * 0.5;						//プリンのｘ座標を指定
 				purinImg.y = 370 - Math.sin(theta / 90) * 0.5;						//プリンのy座標を指定				
 			}
 			if (state == 2) {							//プリンが左右に移動
-				theta2 += 5;
-				purinImg.x = 170 + Math.sin(theta2 / 70) * 100; // x座標を振幅100pxのサイン波で移動				
+				theta2 += 1.6*Math.PI;
+				purinImg.x = 170 + Math.sin(theta2 / 70.4) * 100; // x座標を振幅100pxのサイン波で移動				
 			}
 			if (state == 3) {							//プリンが飛んでいく
 				purinImg.y += -10;				
