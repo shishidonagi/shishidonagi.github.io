@@ -251,9 +251,7 @@ window.onload = function () {
 			//結果ツイート時にURLを貼るため、このゲームのURLをここに記入してURLがツイート画面に反映されるようにエンコードする
 			const url = encodeURI("https://shishidonagi.github.io/");
 			window.open("http://twitter.com/intent/tweet?text=私が舞ちゃんに食べさせたプリンの大きさは"
-			 + (Math.round(200*size-100)) + "点" + "&hashtags=舞ちゃんにプリンを食べさせるゲーム&url="
-			 + url) ;
-			 //ハッシュタグ
+			 + (Math.round(200*size-100)) + "点%0a" + url + "%0a&hashtags=舞ちゃんにプリンを食べさせるゲーム&url=");
 		};
 
 	};
